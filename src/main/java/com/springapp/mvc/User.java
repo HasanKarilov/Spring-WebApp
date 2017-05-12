@@ -6,6 +6,7 @@ package com.springapp.mvc;
 public class User {
     private String name;
     private String password;
+    private boolean isAdmin;
 
     public String getName() {
         return name;
@@ -21,5 +22,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

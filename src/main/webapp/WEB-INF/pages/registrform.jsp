@@ -18,16 +18,20 @@
     <h1><span style="color: #3464FF">IS:</span>KTUM</h1>
   </div>
   <fieldset class="boxBody">
+    <%--path="name" берет данные через getter&setter'ы класса User
+    т.е. он имеет доступ к переменным класса User через их getter&setters--%>
     <form:label path="name">User</form:label>
     <form:input path="name"  tabindex="1" placeholder="user name" required="please"/>
 
     <label><a href="#" class="rLink" tabindex="5">Fogot password?</a>Пароль</label>
 
-    <form:input path="password" type="password" tabindex="2"  placeholder="you password" required="please" />
+    <form:input path="password" type="password" tabindex="2"  placeholder="user password" required="please" />
   </fieldset>
 
   <footer>
-    <label><input type="checkbox" tabindex="3">Remember me</label>
+    <form:label path="admin">
+    <form:checkbox path="admin"/> Admin
+    </form:label>
     <input type="submit" class="btnLogin" value="Login" tabindex="4">
   </footer>
 

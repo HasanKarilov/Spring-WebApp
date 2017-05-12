@@ -8,6 +8,7 @@
 <div align="center">
 <p>Ваш логин: ${user.name}</p>
 <p>Ваш пароль: ${user.password}</p>
+<p>Администратор: ${user.admin}</p>
 </div>
 
 </body>
