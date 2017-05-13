@@ -1,10 +1,16 @@
 package com.springapp.mvc.objects;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Created by hanaria on 1/27/16.
  */
 public class User {
+    @NotNull
+    @Size(min = 3, message = "name length have to be over 3")
     private String name;
+    @Size(min = 6, message = "password length hava to be over 6")
     private String password;
     private boolean isAdmin;
 

@@ -151,3 +151,10 @@ _void afterCompletion(HttpServletRequest, HttpServletResponse, Object handler, E
             <bean class="com.springapp.mvc.interceptor.CheckUserInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+Валидация данных
+===============
+Проверка соответсвия определенным критериам.
+**JSR 303: Bean Validation** -смысл такой что мы можем сразу в наши java обьекты (POJO) вставлять валидацию на уровне свойств наших обьектов. Она стандартная, это значит что она поддерживается везде где есть java код т.е. мы можем использовать Bean Validation во всех java фреймворках.
+
+**Hibernae Validation** -  чаще называют reference implementation (RI) - это эталонная реализация которая берется по умолчанию.

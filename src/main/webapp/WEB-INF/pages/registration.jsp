@@ -22,10 +22,12 @@
     т.е. он имеет доступ к переменным класса User через их getter&setters--%>
     <form:label path="name">User</form:label>
     <form:input path="name"  tabindex="1" placeholder="user name" required="please"/>
+    <form:errors path="name" cssClass="error"/>
 
-    <label><a href="#" class="rLink" tabindex="5">Fogot password?</a>Пароль</label>
+    <label><a href="#" class="rLink" tabindex="5">Fogot password?</a>Password</label>
 
-    <form:input path="password" type="password" tabindex="2"  placeholder="user password" required="please" />
+    <form:input path="password" type="password" tabindex="2"  placeholder="user password" required="please"/>
+    <form:errors path="password" cssClass="error"/>
   </fieldset>
 
   <footer>
