@@ -1,5 +1,6 @@
-package com.springapp.mvc;
+package com.springapp.mvc.controller;
 
+import com.springapp.mvc.objects.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,13 +28,13 @@ public class HelloController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public ModelAndView printWelcome() {
 
-		return new ModelAndView("registrform", "user", new User());
+		return new ModelAndView("registration", "user", new User());
 	}
 
-	@RequestMapping(value = "/showinfor", method = RequestMethod.POST)
+	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
 	public ModelAndView showInfor(@ModelAttribute("user") User user){
 		// view name, model name, object
-		return new ModelAndView("showinfor", "user", user);
+		return new ModelAndView("check-user", "user", user);
 
 		/* equals to above
 		ModelAndView modelAndView = new ModelAndView();
@@ -42,5 +42,10 @@ public class HelloController {
 		modelAndView.addObject("user", user);
 		return modelAndView;
 		*/
+	}
+
+	@RequestMapping(value = "/failed", method = RequestMethod.GET)
+	public ModelAndView failed(){
+		return new ModelAndView("login-fail", "failmessage", "Login failed!");
 	}
 }

@@ -8,7 +8,7 @@
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
-    <context:component-scan base-package="com.springapp.mvc"/>
+    <context:component-scan base-package="com.springapp.mvc.controller"/>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,4 +21,11 @@
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.springapp.mvc.interceptor.CheckUserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -1,12 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Date Time</title>
+    <title>Login Failed</title>
 </head>
 <body>
-
-<div align="center">
-    <h1>${date}</h1>
-</div>
+    <h1>Message: ${failmessage}</h1>
 </body>
 </html>

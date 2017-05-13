@@ -1,4 +1,4 @@
-package com.springapp.mvc;
+package com.springapp.mvc.objects;
 
 /**
  * Created by hanaria on 1/27/16.
