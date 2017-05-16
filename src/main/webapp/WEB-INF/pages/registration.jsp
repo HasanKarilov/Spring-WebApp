@@ -13,10 +13,12 @@
 
 <%--        method is POST    model is "user"     action is "showinfor"         --%>
 <form:form method = "post" commandName="user" action="check-user" class="box login">
+
   <div id="img">
     <img src="${pageContext.request.contextPath}/resources/images/manas_logo.jpg" width="110" height="110" align="center">
     <h1><span style="color: #3464FF">IS:</span>KTUM</h1>
   </div>
+
   <fieldset class="boxBody">
     <%--path="name" берет данные через getter&setter'ы класса User
     т.е. он имеет доступ к переменным класса User через их getter&setters--%>

@@ -158,3 +158,28 @@ _void afterCompletion(HttpServletRequest, HttpServletResponse, Object handler, E
 **JSR 303: Bean Validation** -смысл такой что мы можем сразу в наши java обьекты (POJO) вставлять валидацию на уровне свойств наших обьектов. Она стандартная, это значит что она поддерживается везде где есть java код т.е. мы можем использовать Bean Validation во всех java фреймворках.
 
 **Hibernae Validation** -  чаще называют reference implementation (RI) - это эталонная реализация которая берется по умолчанию.
+
+Сохранение обьекта в сессии
+===============
+
+Чтобы обьект был доступен в нескольких запросах, его можно сохранить в сессии. В одной сессии может быть любое количество запросов клиента. Если между этими запросами не сохранять данные то эти данные будут теряться. Допустим если пользователь добавил несколько товаров в конзину и если эти данные не будут сохранены в сессии то в корзине ничего не окажется.
+
+@ModelAttribute - если эта аннотиция указана в параметре метода. То с помощью этого атрибута мы можем получить значение модели (@ModelAttribute("user") User user) которое храниться в "user". Если в модель "user" мы записовали какие то данные, то они записоваются в переменную User user.
+
+	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
+	public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "registration";
+		}
+		model.addAttribute("user", user);
+	}
+
+@ModelAttribute - сама инициализирует обьект User user, т.е. получается если нет сохраненного обьекта то @ModelAttribute создает этот обьект (но обьект не должен быть абстрактным классовм).
+   
+   	@RequestMapping(value="/", method = RequestMethod.GET)
+	public ModelAndView registration(@ModelAttribute User user, HttpSession session) {
+		user.setName("Userator");
+		return new ModelAndView("registration", "user", user);
+	}
+			
+**@ModelAttribute** может возвращять готовые значения модели которые уже сохранены и он может создавать сам если этого значения нет.
