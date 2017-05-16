@@ -183,3 +183,29 @@ _void afterCompletion(HttpServletRequest, HttpServletResponse, Object handler, E
 	}
 			
 **@ModelAttribute** может возвращять готовые значения модели которые уже сохранены и он может создавать сам если этого значения нет.
+
+Если указан @SessionAttributes("user") и @ModelAttribute указан в качестве параметра (@ModelAttribu User user - в методе registration) и этого значения в качестве сохраненного параметра нет, то он это значение ищет в своей модели если в модели этого значения нет то это значение он ищет в сессии. Если в сессии этой ошибки то выводит ошибку
+
+    HTTP Status 500 - Expected session attribute 'user'
+    type Exception report
+    message Expected session attribute 'user'
+    description The server encountered an internal error that prevented it from fulfilling this request.
+    exception
+    
+    org.springframework.web.HttpSessionRequiredException: Expected session attribute 'user'
+        org.springframework.web.method.annotation.ModelFactory.initModel(ModelFactory.java:114)
+        org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:758)
+        org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:721)
+        org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+        org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:943)
+        org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:877)
+        org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+        org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+        javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+        org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+        javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+        org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+        org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+        org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+    
+    note The full stack trace of the root cause is available in the Apache Tomcat/8.0.28 logs.
