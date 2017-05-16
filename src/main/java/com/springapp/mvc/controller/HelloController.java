@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -41,7 +42,8 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "/failed", method = RequestMethod.GET)
-	public ModelAndView failed(){
+	public ModelAndView failed(SessionStatus sessionStatus){
+		sessionStatus.setComplete();
 		return new ModelAndView("login-fail", "failmessage", "Login failed! (catch by Interceptor)");
 	}
 
