@@ -209,3 +209,8 @@ _void afterCompletion(HttpServletRequest, HttpServletResponse, Object handler, E
         org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
     
     note The full stack trace of the root cause is available in the Apache Tomcat/8.0.28 logs.
+    
+@SessionAttributes - нужен для того что бы сохранять значения которые вы создаете по ходу работы контроллера. Рекоменндуется сохранять в сессии т.к. по умолчанию то что вы создаете в модели, все это сохраняется между вашими запросами или в одном запросе. Что бы сохранить значения какой то модели и использовать его в разным запросов, мы должны прописовать его в SessionAttributes. 
+
+Внутри модели обьект будет сохроняться только внутри запроса. 
+Ecли нужно сохранять обьект между разными запросами то использовать сессии. 

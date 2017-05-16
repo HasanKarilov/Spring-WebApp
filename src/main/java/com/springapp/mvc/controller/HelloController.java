@@ -21,8 +21,8 @@ import java.util.Date;
 public class HelloController {
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ModelAndView registration(@ModelAttribute User user, HttpSession session) {
-		user = new User("Userator", "Userator password");
+	public ModelAndView registration(HttpSession session) {
+		User user = new User("Userator", "Userator password");
 		/*
 		OR
 		user.setName("Userator");
@@ -46,7 +46,7 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "/getDate", method = RequestMethod.GET)
-	public String getaDateTime(Model model){
+	public String getaDateTime(@ModelAttribute("user") User user, Model model){
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy HH:MM:ss");
 		String str = dateFormat.format(date);
