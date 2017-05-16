@@ -1,6 +1,7 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.objects.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -34,14 +36,25 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, ModelMap modelMap) {
+	public ModelAndView checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, ModelMap modelMap) {
 		// Model model & ModelMap modelMap это два совершенно одинаковых обьекта
 		System.out.println(model);
 		System.out.println(modelMap);
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		RedirectView redirectView = new RedirectView("check-user");
+		redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+
+		modelAndView.setView(redirectView);
 		if (bindingResult.hasErrors()) {
-			return "registration";
+			modelAndView.setViewName("registration");
 		}
-		model.addAttribute("user", user);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/check-user", method = RequestMethod.GET)
+	public String chekUserGet(){
 		return "check-user";
 	}
 
